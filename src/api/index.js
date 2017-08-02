@@ -10,7 +10,23 @@ export default ({ config, db }) => {
 
 	// perhaps expose some API metadata at the root
 	api.get('/', (req, res) => {
-		res.json({ version });
+		res.json({ developers: [
+            {
+                name: 'Carlos'
+            },
+            {
+                name: 'David'
+            },
+            {
+                name: 'Enrique'
+            },
+            {
+                name: 'Lluís'
+            },
+            {
+                name: 'Paco'
+            },
+		] });
 	});
 
 	return api;
