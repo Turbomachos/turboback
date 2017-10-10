@@ -9,6 +9,7 @@ import api from './api';
 import config from './config.json';
 import mongoose from 'mongoose';
 import Miembro from './models/miembroModel';
+import swaggerJSDoc from 'swagger-jsdoc';
 let app = express();
 app.server = http.createServer(app);
 
@@ -19,7 +20,23 @@ db.once('open', function() {
     console.log('connected!');
 
 });
+var swaggerDefinition = {
+    info: {
+        title: 'Node Swagger API',
+        version: '1.0.0',
+        description: 'Demonstrating how to describe a RESTful API with Swagger',
+    },
+    host: 'localhost:3000',
+    basePath: '/',
+};
+var options = {
+    // import swaggerDefinitions
+    swaggerDefinition: swaggerDefinition,
+    // path to the API docs
+    apis: ['./routes/*.js'],
+};
 
+var swaggerSpec = swaggerJSDoc(options);
 // logger
 app.use(morgan('dev'));
 
@@ -41,6 +58,10 @@ initializeDb( db => {
 	// api router
 	app.use('/api', api({ config, db }));
 
+	app.get('/swagger.json', function(req, res){
+        res.setHeader('Content-Type', 'application/json');
+        res.send(swaggerSpec);
+    });
 	app.server.listen(process.env.PORT || config.port, () => {
 		console.log(`Started on port ${app.server.address().port}`);
 	});
