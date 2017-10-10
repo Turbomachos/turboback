@@ -34,7 +34,7 @@ var options = {
     // import swaggerDefinitions
     swaggerDefinition: swaggerDefinition,
     // path to the API docs
-    apis: ['./api/index.js'],
+    apis: ['./api/*js'],
 };
 
 var swaggerSpec = swaggerJSDoc(options);
