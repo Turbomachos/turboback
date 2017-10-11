@@ -61,6 +61,7 @@ initializeDb( db => {
 
 	app.get('/swagger.json', function(req, res){
         res.setHeader('Content-Type', 'application/json');
+        res.setHeader('Cache-Control', 'no-cache');
         res.send(swaggerSpec);
     });
 	app.server.listen(process.env.PORT || config.port, () => {
