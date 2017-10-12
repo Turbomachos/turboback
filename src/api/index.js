@@ -33,7 +33,7 @@ export default ({ config, db }) => {
       * /api/miembros:
       *     get:
       *         tags:
-      *             -miembros
+      *             - miembros
       *     description: devuelve todos los miembros ed tusbomachos
       *     produces:
       *         - application/json
