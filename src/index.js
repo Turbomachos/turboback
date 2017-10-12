@@ -27,7 +27,7 @@ var swaggerDefinition = {
         version: '1.0.0',
         description: 'Demonstrating how to describe a RESTful API with Swagger',
     },
-    schemes: ["http", "https"],
+    schemes: ["https"],
     host: 'www.turbomachos.com',
     basePath: '/back/v1',
 };
