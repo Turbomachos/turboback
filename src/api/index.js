@@ -34,7 +34,8 @@ export default ({ config, db }) => {
       *     get:
       *         tags:
       *             - miembros
-      *     description: devuelve todos los miembros ed tusbomachos
+      *     description:
+      *         devuelve todos los miembros ed tusbomachos
       *     produces:
       *         - application/json
       *     responses:
