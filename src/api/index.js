@@ -35,12 +35,13 @@ export default ({ config, db }) => {
       *         tags:
       *             - miembros
       *     description:
-      *         devuelve todos los miembros ed tusbomachos
+      *         - devuelve todos los miembros ed tusbomachos
       *     produces:
       *         - application/json
       *     responses:
       *         200:
-      *             description: Un array de miembros de tusbomachos
+      *             description:
+      *                 - Un array de miembros de tusbomachos
       *             schema:
       *                 $ref: '#/definitions/Miembro'
      */
