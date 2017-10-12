@@ -34,16 +34,16 @@ export default ({ config, db }) => {
       *     get:
       *         tags:
       *             - miembros
-      *     description:
-      *         - devuelve todos los miembros ed tusbomachos
-      *     produces:
-      *         - application/json
-      *     responses:
-      *         200:
-      *             description:
-      *                 - Un array de miembros de tusbomachos
-      *             schema:
-      *                 $ref: '#/definitions/Miembro'
+      *         description:
+      *             - devuelve todos los miembros ed tusbomachos
+      *         produces:
+      *             - application/json
+      *         responses:
+      *             200:
+      *                 description:
+      *                     - Un array de miembros de tusbomachos
+      *                 schema:
+      *                     $ref: '#/definitions/Miembro'
      */
     // perhaps expose some API metadata at the root
     api.get('/miembros', (req, res) => {
