@@ -21,6 +21,7 @@ db.once('open', function() {
 
 });
 var swaggerDefinition = {
+    swagger:"2.0",
     info: {
         title: 'Node Swagger API',
         version: '1.0.0',
@@ -34,10 +35,11 @@ var options = {
     // import swaggerDefinitions
     swaggerDefinition: swaggerDefinition,
     // path to the API docs
-    apis: ['./api/*js'],
+    apis: ['dist/yml/api.yml'],
 };
 
 var swaggerSpec = swaggerJSDoc(options);
+
 // logger
 app.use(morgan('dev'));
 
@@ -52,10 +54,8 @@ app.use(bodyParser.json({
 
 // connect to db
 initializeDb( db => {
-
 	// internal middleware
 	app.use(middleware({ config, db }));
-
 	// api router
 	app.use('/api', api({ config, db }));
 
@@ -64,9 +64,9 @@ initializeDb( db => {
         res.setHeader('Cache-Control', 'no-cache');
         res.send(swaggerSpec);
     });
+
 	app.server.listen(process.env.PORT || config.port, () => {
 		console.log(`Started on port ${app.server.address().port}`);
 	});
 });
-
 export default app;
