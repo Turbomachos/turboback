@@ -10,9 +10,12 @@ import config from './config.json';
 import mongoose from 'mongoose';
 import Miembro from './models/miembroModel';
 import swaggerJSDoc from 'swagger-jsdoc';
+import mysql from '../node_modules/mysql';
 let app = express();
 app.server = http.createServer(app);
 
+
+//conexión a MongoDB
 mongoose.connect('mongodb://turbo:turbo@ds129733.mlab.com:29733/turboback');
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -20,6 +23,23 @@ db.once('open', function() {
     console.log('connected!');
 
 });
+
+//conexión MySQL
+var connection = mysql.createConnection({
+    host:'localhost',
+    user:'turbomachos',
+    password : 'Turbo.machos91',
+    database: 'turbomachos',
+    port: '3306'
+});
+connection.connect(function(error){
+    if(error){
+        console.log('error conectando a mysql: ' + error.stack);
+    }
+});
+
+connection.query('INSERT INTO `usuarios` VALUES(0, "pakatanga", "tortilla", "pmus@turbomachos.com", "", "")');
+
 var swaggerDefinition = {
     swagger:"2.0",
     info: {
