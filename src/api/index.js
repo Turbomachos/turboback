@@ -2,6 +2,7 @@ import { version } from '../../package.json';
 import { Router } from 'express';
 import facets from './facets';
 import Miembro from '../models/miembroModel';
+import mysqlDb from 'mysql/index'
 
 export default ({ config, db }) => {
     let api = Router();
@@ -49,6 +50,12 @@ export default ({ config, db }) => {
             if (error) res.json({error:'errooooor'});
             else res.json(resultado);
         });
+    });
+
+    api.get('/usuarios', (req, res) => {
+        mysqlDb.createQuery('select * from `usuarios`', undefined, (result)=>{
+            return result;
+        })
     });
 
     return api;
