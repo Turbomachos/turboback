@@ -53,11 +53,11 @@ export default ({ config, db }) => {
     });
 
     api.get('/usuarios', (req, res) => {
-        connection.query('INSERT INTO usuarios VALUES(0, "pakatanga", "tortilla", "pmus@turbomachos.com", "", "")',(cosa) =>{
-            console.log(cosa);
+        connection.query('INSERT INTO usuarios VALUES(0, "pakatanga", "tortilla", "pmus@turbomachos.com", "", "")',(error, results, fields) =>{
+            console.log(results);
         });
-        connection.query('select * from usuarios', (result)=>{
-            return result;
+        connection.query('select * from usuarios', (error, results, fields)=>{
+            return results;
         });
     });
 
