@@ -2,7 +2,7 @@ import { version } from '../../package.json';
 import { Router } from 'express';
 import facets from './facets';
 import Miembro from '../models/miembroModel';
-import mysqlDb from 'mysql/index'
+import connection from '../mysql/index';
 
 export default ({ config, db }) => {
     let api = Router();
@@ -53,9 +53,12 @@ export default ({ config, db }) => {
     });
 
     api.get('/usuarios', (req, res) => {
-        mysqlDb.createQuery('select * from `usuarios`', undefined, (result)=>{
+        connection.createQuery('INSERT INTO usuarios VALUES(0, "pakatanga", "tortilla", "pmus@turbomachos.com", "", "")', undefined, (cosa) =>{
+            console.log(cosa);
+        });
+        connection.createQuery('select * from usuarios', undefined, (result)=>{
             return result;
-        })
+        });
     });
 
     return api;

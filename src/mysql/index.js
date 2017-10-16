@@ -1,5 +1,6 @@
-import mysql from '../node_modules/mysql';
-//conexión MySQL
+
+import mysql from 'mysql';
+
 var connection = mysql.createConnection({
     host:'localhost',
     user:'turbomachos',
@@ -7,12 +8,13 @@ var connection = mysql.createConnection({
     database: 'turbomachos',
     port: '3306'
 });
+
 connection.connect(function(error){
     if(error){
         console.log('error conectando a mysql: ' + error.stack);
+    }else{
+        console.log('conexión de maravilla');
     }
 });
-
-connection.query('INSERT INTO `usuarios` VALUES(0, "pakatanga", "tortilla", "pmus@turbomachos.com", "", "")');
 
 export default connection;

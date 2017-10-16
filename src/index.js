@@ -11,6 +11,8 @@ import mongoose from 'mongoose';
 import Miembro from './models/miembroModel';
 import swaggerJSDoc from 'swagger-jsdoc';
 
+import mysql from 'mysql';
+
 let app = express();
 app.server = http.createServer(app);
 
@@ -24,8 +26,6 @@ db.once('open', function() {
 
 });
 
-
-
 var swaggerDefinition = {
     swagger:"2.0",
     info: {
@@ -37,6 +37,7 @@ var swaggerDefinition = {
     host: 'www.turbomachos.com',
     basePath: '/back/v1',
 };
+
 var options = {
     // import swaggerDefinitions
     swaggerDefinition: swaggerDefinition,
