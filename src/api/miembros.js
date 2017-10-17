@@ -146,6 +146,9 @@ export default ({ config, db }) => {
      *                      fecha_salida:
      *                          type: integer
      *                          example: 1508274034
+     *                      _id:
+     *                          type: string
+     *                          example: 59e67a3e6664b9002135bae3
      *         responses:
      *             200:
      *                 description: Devuleve el miembro creado
