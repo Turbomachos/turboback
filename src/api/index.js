@@ -37,7 +37,7 @@ export default ({ config, db }) => {
      *        properties:
      *            id_usuario:
      *                type: string
-     *            username:s
+     *            username:
      *                type: string
      *            password:
      *                type: string
