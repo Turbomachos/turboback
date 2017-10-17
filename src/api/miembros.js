@@ -112,7 +112,16 @@ export default ({ config, db }) => {
      *         parameters:
      *             - in: body
      *               schema:
-     *                  $ref: '#/definitions/Miembro'
+     *                   imagen:
+     *                       type: string
+     *                   nombre:
+     *                       type: string
+     *                   biografia:
+     *                       type: string
+     *                   fecha_union:
+     *                       type: integer
+     *                   fecha_salida:
+     *                       type: integer
      *         responses:
      *             200:
      *                 description: Devuleve el miembro creado
