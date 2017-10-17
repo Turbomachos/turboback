@@ -103,7 +103,7 @@ export default ({ config, db }) => {
     /**
      * @swagger
      * /api/miembros/miembro:
-     *     post:
+     *     put:
      *         tags:
      *             - Miembros
      *         description: Inserta un nuevo miembro
