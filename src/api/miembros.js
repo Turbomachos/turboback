@@ -36,13 +36,24 @@ export default ({ config, db }) => {
      *         produces:
      *             - application/json
      *         parameters:
-     *             -
-     *                  nombre: "Chuck"
-     *                  descripcion: "Chuck Norris have a stone as pet, the Earth"
-     *                  fecha_union: "Fecha de unión a turbomachos"
-     *                  fecha_salida: "Fecha de salida de turbomachos"
-     *                  imagen: "Imagen del turbomacho en cuestión"
-     *                  _id: "Id de la base de datos del turbomacho en cuestión"
+     *             - in: query
+     *               name : nombre
+     *               type: string
+     *             - in: query
+     *               name : descripcion
+     *               type:string
+     *             - in: query
+     *               name : fecha_union
+     *               type: integer
+     *             - in: query
+     *               name : fecha_salida
+     *               type: integer
+     *             - in: query
+     *               name : imagen
+     *               type: string
+     *             - in: query
+     *               name : _id
+     *               type: string
      *         responses:
      *             200:
      *                 description: Un array de miembros de turbomachos
@@ -76,6 +87,7 @@ export default ({ config, db }) => {
      *             - application/json
      *         parameters:
      *             - in: body
+     *               name : Miembro
      *               schema:
      *                   nombre:
      *                       type: string
@@ -111,6 +123,7 @@ export default ({ config, db }) => {
      *             - application/json
      *         parameters:
      *             - in: body
+     *               name : Miembro
      *               schema:
      *                   imagen:
      *                       type: string
@@ -160,13 +173,25 @@ export default ({ config, db }) => {
      *         produces:
      *             - application/json
      *         parameters:
-     *             -
-     *                  nombre: "Chuck"
-     *                  descripcion: "Chuck Norris have a stone as pet, the Earth"
-     *                  fecha_union: "Fecha de unión a turbomachos"
-     *                  fecha_salida: "Fecha de salida de turbomachos"
-     *                  imagen: "Imagen del turbomacho en cuestión"
-     *                  _id: "Id de la base de datos del turbomacho en cuestión"
+     *             - in: query
+     *               name : nombre
+     *               type: string
+     *             - in: query
+     *               name : descripcion
+     *               type:string
+     *             - in: query
+     *               name : fecha_union
+     *               type: integer
+     *             - in: query
+     *               name : fecha_salida
+     *               type: integer
+     *             - in: query
+     *               name : imagen
+     *               type: string
+     *             - in: query
+     *               name : _id
+     *               type: string
+     *
      *         responses:
      *             200:
      *                 description: Turbomacho eliminado con éxito
