@@ -93,8 +93,10 @@ export default ({ config, db }) => {
      *                   properties:
      *                      nombre:
      *                          type: string
+     *                          example: tortilla22
      *                      biografia:
      *                          type: string
+     *                          example: Tortilla 22 ha sido uno de los grandes...
      *         responses:
      *             200:
      *                 description: Devuleve el miembro creado
@@ -131,14 +133,19 @@ export default ({ config, db }) => {
      *                   properties:
      *                      imagen:
      *                          type: string
+     *                          example: https://upload.wikimedia.org/wikipedia/commons/3/30/Chuck_Norris_May_2015.jpg
      *                      nombre:
      *                          type: string
+     *                          example: Chuck Norris
      *                      biografia:
      *                          type: string
+     *                          example: Saludad a vuestro dios
      *                      fecha_union:
      *                          type: integer
+     *                          example: 1508274033
      *                      fecha_salida:
      *                          type: integer
+     *                          example: 1508274034
      *         responses:
      *             200:
      *                 description: Devuleve el miembro creado
