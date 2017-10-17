@@ -89,10 +89,12 @@ export default ({ config, db }) => {
      *             - in: body
      *               name : Miembro
      *               schema:
-     *                   nombre:
-     *                       type: string
-     *                   biografia:
-     *                       type: string
+     *                   type: object
+     *                   properties:
+     *                      nombre:
+     *                          type: string
+     *                      biografia:
+     *                          type: string
      *         responses:
      *             200:
      *                 description: Devuleve el miembro creado
@@ -125,16 +127,18 @@ export default ({ config, db }) => {
      *             - in: body
      *               name : Miembro
      *               schema:
-     *                   imagen:
-     *                       type: string
-     *                   nombre:
-     *                       type: string
-     *                   biografia:
-     *                       type: string
-     *                   fecha_union:
-     *                       type: integer
-     *                   fecha_salida:
-     *                       type: integer
+     *                   type: object
+     *                   properties:
+     *                      imagen:
+     *                          type: string
+     *                      nombre:
+     *                          type: string
+     *                      biografia:
+     *                          type: string
+     *                      fecha_union:
+     *                          type: integer
+     *                      fecha_salida:
+     *                          type: integer
      *         responses:
      *             200:
      *                 description: Devuleve el miembro creado
