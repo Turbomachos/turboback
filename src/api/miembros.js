@@ -37,22 +37,22 @@ export default ({ config, db }) => {
      *             - application/json
      *         parameters:
      *             - in: query
-     *               name : nombre
+     *               name: nombre
      *               type: string
      *             - in: query
      *               name : descripcion
-     *               type:string
+     *               type: string
      *             - in: query
-     *               name : fecha_union
+     *               name: fecha_union
      *               type: integer
      *             - in: query
      *               name : fecha_salida
      *               type: integer
      *             - in: query
-     *               name : imagen
+     *               name: imagen
      *               type: string
      *             - in: query
-     *               name : _id
+     *               name: _id
      *               type: string
      *         responses:
      *             200:
@@ -177,19 +177,19 @@ export default ({ config, db }) => {
      *               name : nombre
      *               type: string
      *             - in: query
-     *               name : descripcion
-     *               type:string
-     *             - in: query
-     *               name : fecha_union
-     *               type: integer
-     *             - in: query
-     *               name : fecha_salida
-     *               type: integer
-     *             - in: query
-     *               name : imagen
+     *               name: descripcion
      *               type: string
      *             - in: query
-     *               name : _id
+     *               name: fecha_union
+     *               type: integer
+     *             - in: query
+     *               name: fecha_salida
+     *               type: integer
+     *             - in: query
+     *               name: imagen
+     *               type: string
+     *             - in: query
+     *               name: _id
      *               type: string
      *
      *         responses:
