@@ -2,8 +2,8 @@
 import mysql from 'mysql';
 
 var connection = mysql.createConnection({
-    host:'localhost',
-    user:'turbomachos',
+    host:'www.turbomachos.com',
+    user:'turbouser',
     password : 'Turbo.machos91',
     database: 'turbomachos',
     port: '3306'

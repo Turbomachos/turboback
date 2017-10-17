@@ -29,13 +29,33 @@ export default ({ config, db }) => {
      *                type: integer
     */
 
+    /**
+     *
+     * @swagger
+     * definition:
+     *    Usuario:
+     *        properties:
+     *            id_usuario:
+     *                type: string
+     *            username:s
+     *                type: string
+     *            password:
+     *                type: string
+     *            email:
+     *                type: string
+     *            imagen:
+     *                type: integer
+     *            nombre_perfil:
+     *                type: integer
+     */
+
      /**
       * @swagger
       * /api/miembros:
       *     get:
       *         tags:
-      *             - miembros
-      *         description: devuelve todos los miembros ed tusbomachos
+      *             - Miembros
+      *         description: devuelve todos los miembros de turbomachos
       *         produces:
       *             - application/json
       *         responses:
@@ -52,12 +72,27 @@ export default ({ config, db }) => {
         });
     });
 
+    /**
+     * @swagger
+     * /api/usuarios:
+     *     get:
+     *         tags:
+     *             - Usuarios
+     *         description: devuelve todos los usuarios de turbomachos
+     *         produces:
+     *             - application/json
+     *         responses:
+     *             200:
+     *                 description: Un array de usuarios de turbomachos
+     *                 schema:
+     *                     $ref: '#/definitions/Usuario'
+     */
     api.get('/usuarios', (req, res) => {
-        connection.query('INSERT INTO usuarios VALUES(0, "pakatanga", "tortilla", "pmus@turbomachos.com", "", "")',(error, results, fields) =>{
-            console.log(results);
-        });
+        // connection.query('INSERT INTO usuarios VALUES(0, "pakatanga", "tortilla", "pmus@turbomachos.com", "", "")',(error, results, fields) =>{
+        //     console.log(results);
+        // });
         connection.query('select * from usuarios', (error, results, fields)=>{
-            return results;
+            res.json(results);
         });
     });
 
