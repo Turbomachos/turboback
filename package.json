@@ -33,6 +33,7 @@
     "compression": "^1.5.2",
     "cors": "^2.7.1",
     "express": "^4.13.3",
+    "moment": "^2.19.1",
     "mongoose": "^4.11.5",
     "morgan": "^1.8.0",
     "mysql": "^2.15.0",
