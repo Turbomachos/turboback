@@ -194,7 +194,7 @@ export default ({ config, db }) => {
         }
 
         if(req.body.id_usuario){
-            connection.query('UPDATE usuarios SET ' + where + ' where _id = "' + req.body.id_usuario + '" ',(error, results, fields) =>{
+            connection.query('UPDATE usuarios SET ' + where + ' where id_usuario = "' + req.body.id_usuario + '" ',(error, results, fields) =>{
                 if(error){
                     console.log(error);
                     res.json(error);
