@@ -241,7 +241,7 @@ export default ({ config, db }) => {
         var wheres = [];
         var where = '';
         for (var atr of Object.keys(req.query)){
-            if (atr == 'username' || atr == 'id_usuario'){
+            if (atr == 'username' || atr == 'id_usuario' || atr == 'email' || atr == 'nombre_perfil'){
                 wheres.push(' ' + atr + ' = "' + req.query[atr] + '" ');
             }
         }

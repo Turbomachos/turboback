@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c828855-e269-4b70-b582-0ae7bfab90e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/usuarios.js" afterPath="$PROJECT_DIR$/src/api/usuarios.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -24,8 +23,8 @@
       <file leaf-file-name="usuarios.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/api/usuarios.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="246" column="9" lean-forward="true" selection-start-line="246" selection-start-column="9" selection-end-line="246" selection-end-column="9" />
+            <state relative-caret-position="410">
+              <caret line="243" column="99" lean-forward="false" selection-start-line="243" selection-start-column="99" selection-end-line="243" selection-end-column="99" />
               <folding>
                 <element signature="e#229#702#0" expanded="false" />
                 <element signature="e#709#1408#0" expanded="false" />
@@ -312,12 +311,12 @@
       <workItem from="1508357177302" duration="641000" />
       <workItem from="1508444531962" duration="4217000" />
       <workItem from="1508518420502" duration="395000" />
-      <workItem from="1508518835104" duration="4094000" />
+      <workItem from="1508518835104" duration="4122000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55756000" />
+    <option name="totallyTimeSpent" value="55784000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -718,8 +717,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/usuarios.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="246" column="9" lean-forward="true" selection-start-line="246" selection-start-column="9" selection-end-line="246" selection-end-column="9" />
+        <state relative-caret-position="410">
+          <caret line="243" column="99" lean-forward="false" selection-start-line="243" selection-start-column="99" selection-end-line="243" selection-end-column="99" />
           <folding>
             <element signature="e#229#702#0" expanded="false" />
             <element signature="e#709#1408#0" expanded="false" />
