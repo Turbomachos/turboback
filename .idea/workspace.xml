@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5c828855-e269-4b70-b582-0ae7bfab90e8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/usuarios.js" afterPath="$PROJECT_DIR$/src/api/usuarios.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,12 +23,11 @@
       <file leaf-file-name="usuarios.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/api/usuarios.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="254" column="15" lean-forward="true" selection-start-line="254" selection-start-column="15" selection-end-line="254" selection-end-column="15" />
+            <state relative-caret-position="3162">
+              <caret line="254" column="15" lean-forward="false" selection-start-line="254" selection-start-column="15" selection-end-line="254" selection-end-column="15" />
               <folding>
                 <element signature="e#229#702#0" expanded="false" />
                 <element signature="e#709#1408#0" expanded="false" />
-                <element signature="e#1447#2196#0" expanded="false" />
                 <element signature="e#3577#4684#0" expanded="false" />
               </folding>
             </state>
@@ -325,12 +323,12 @@
       <workItem from="1508357177302" duration="641000" />
       <workItem from="1508444531962" duration="4217000" />
       <workItem from="1508518420502" duration="395000" />
-      <workItem from="1508518835104" duration="3471000" />
+      <workItem from="1508518835104" duration="3754000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55133000" />
+    <option name="totallyTimeSpent" value="55416000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -731,12 +729,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/usuarios.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="254" column="15" lean-forward="true" selection-start-line="254" selection-start-column="15" selection-end-line="254" selection-end-column="15" />
+        <state relative-caret-position="3162">
+          <caret line="254" column="15" lean-forward="false" selection-start-line="254" selection-start-column="15" selection-end-line="254" selection-end-column="15" />
           <folding>
             <element signature="e#229#702#0" expanded="false" />
             <element signature="e#709#1408#0" expanded="false" />
-            <element signature="e#1447#2196#0" expanded="false" />
             <element signature="e#3577#4684#0" expanded="false" />
           </folding>
         </state>

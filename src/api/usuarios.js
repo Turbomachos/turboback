@@ -54,7 +54,7 @@ export default ({ config, db }) => {
         var where = '';
         for (var atr of Object.keys(req.query)){
             if (atr == 'username' || atr == 'id_usuario'){
-                wheres.push(' ' + atr + ' = "' + req.query["atr"] + '" ');
+                wheres.push(' ' + atr + ' = "' + req.query[atr] + '" ');
             }
         }
         for(var i = 0; i < wheres.length; i++){
@@ -182,7 +182,7 @@ export default ({ config, db }) => {
         var where = '';
         for (var atr of Object.keys(req.body)){
             if (atr == 'username' || atr == 'nombre_perfil' || atr == 'imagen' || atr == 'email'){
-                wheres.push(' ' + atr + " = '" + req.body["atr"] + "' ");
+                wheres.push(' ' + atr + " = '" + req.body[atr] + "' ");
             }
             if(atr == 'password'){
                 wheres.push(' ' + atr + ' = "' + TurboUtils.generateHash(req.body["atr"]) + '" ');
