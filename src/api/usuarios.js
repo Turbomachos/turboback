@@ -237,7 +237,7 @@ export default ({ config, db }) => {
      *                 schema:
      *                     $ref: '#/definitions/Usuario'
      */
-    api.delete('/usuaio', (req, res) => {
+    api.delete('/usuario', (req, res) => {
         if(req.body.id_usuario){
             connection.query('DELETE from usuarios where id_usuario = "' + req.body.id_usuario + '" ', (error, results, fields) => {
                 if(error){
