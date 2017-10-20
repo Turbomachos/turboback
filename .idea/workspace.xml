@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c828855-e269-4b70-b582-0ae7bfab90e8" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/usuarios.js" afterPath="$PROJECT_DIR$/src/api/usuarios.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -23,12 +24,11 @@
       <file leaf-file-name="usuarios.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/api/usuarios.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="243" column="99" lean-forward="false" selection-start-line="243" selection-start-column="99" selection-end-line="243" selection-end-column="99" />
+            <state relative-caret-position="352">
+              <caret line="241" column="46" lean-forward="false" selection-start-line="241" selection-start-column="46" selection-end-line="241" selection-end-column="46" />
               <folding>
                 <element signature="e#229#702#0" expanded="false" />
                 <element signature="e#709#1408#0" expanded="false" />
-                <element signature="e#3576#4683#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -311,12 +311,12 @@
       <workItem from="1508357177302" duration="641000" />
       <workItem from="1508444531962" duration="4217000" />
       <workItem from="1508518420502" duration="395000" />
-      <workItem from="1508518835104" duration="4122000" />
+      <workItem from="1508518835104" duration="4509000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55784000" />
+    <option name="totallyTimeSpent" value="56171000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -707,7 +707,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/miembros.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1581">
+        <state relative-caret-position="369">
           <caret line="144" column="51" lean-forward="true" selection-start-line="144" selection-start-column="51" selection-end-line="144" selection-end-column="51" />
           <folding>
             <element signature="e#5460#6312#0" expanded="false" />
@@ -717,12 +717,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/usuarios.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="243" column="99" lean-forward="false" selection-start-line="243" selection-start-column="99" selection-end-line="243" selection-end-column="99" />
+        <state relative-caret-position="352">
+          <caret line="241" column="46" lean-forward="false" selection-start-line="241" selection-start-column="46" selection-end-line="241" selection-end-column="46" />
           <folding>
             <element signature="e#229#702#0" expanded="false" />
             <element signature="e#709#1408#0" expanded="false" />
-            <element signature="e#3576#4683#0" expanded="false" />
           </folding>
         </state>
       </provider>

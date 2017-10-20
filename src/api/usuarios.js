@@ -235,7 +235,11 @@ export default ({ config, db }) => {
      *             200:
      *                 description: Turbousuario eliminado con éxito
      *                 schema:
-     *                     $ref: '#/definitions/Usuario'
+     *                      type: object
+     *                      properties:
+     *                          affectedRows:
+     *                              type: integer
+     *                              example: 1
      */
     api.delete('/usuario', (req, res) => {
         var wheres = [];
@@ -256,8 +260,8 @@ export default ({ config, db }) => {
                 res.json(error);
             }
             if(results){
-                console.log(results);
-                res.json(results);
+                console.log(results.affectedRows);
+                res.json({affectedRows: results.affectedRows});
             }
         });
     });
