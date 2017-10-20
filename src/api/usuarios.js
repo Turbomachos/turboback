@@ -41,7 +41,7 @@ export default ({ config, db }) => {
      *               name: username
      *               type: string
      *             - in: query
-     *               name: _id
+     *               name: id_usuario
      *               type: string
      *         responses:
      *             200:
@@ -53,7 +53,7 @@ export default ({ config, db }) => {
         var wheres = [];
         var where = '';
         for (var atr of Object.keys(req.query)){
-            if (atr == 'username' || atr == '_id'){
+            if (atr == 'username' || atr == 'id_usuario'){
                 wheres.push(' ' + atr + ' = "' + req.query["atr"] + '" ');
             }
         }
@@ -124,8 +124,16 @@ export default ({ config, db }) => {
                 res.json(error);
             }
             if(results){
-                console.log(results);
-                res.json(results);
+                connection.query('select * from usuarios where id_usuario = "' + results.insertId + '"' , (error, results, fields)=>{
+                    if(error){
+                        console.log(error);
+                        res.json(error);
+                    }
+                    if(results){
+                        console.log(results);
+                        res.json(results);
+                    }
+                });
             }
         });
     });
@@ -160,7 +168,7 @@ export default ({ config, db }) => {
      *                      password:
      *                          type: string
      *                          example: Patata22
-     *                      _id:
+     *                      id_usuario:
      *                          type: string
      *                          example: 1hb238hfs932gfn2183
      *         responses:
@@ -185,8 +193,8 @@ export default ({ config, db }) => {
             else        where += ', ' + wheres[i];
         }
 
-        if(req.body._id){
-            connection.query('UPDATE usuarios SET ' + where + ' where _id = "' + req.body._id + '" ',(error, results, fields) =>{
+        if(req.body.id_usuario){
+            connection.query('UPDATE usuarios SET ' + where + ' where _id = "' + req.body.id_usuario + '" ',(error, results, fields) =>{
                 if(error){
                     console.log(error);
                     res.json(error);
@@ -220,7 +228,7 @@ export default ({ config, db }) => {
      *               name: email
      *               type: string
      *             - in: query
-     *               name: _id
+     *               name: id_usuario
      *               type: string
      *
      *         responses:
@@ -230,8 +238,8 @@ export default ({ config, db }) => {
      *                     $ref: '#/definitions/Usuario'
      */
     api.delete('/usuaio', (req, res) => {
-        if(req.body._id){
-            connection.query('DELETE from usuarios where _id = "' + req.body._id + '" ', (error, results, fields) => {
+        if(req.body.id_usuario){
+            connection.query('DELETE from usuarios where id_usuario = "' + req.body.id_usuario + '" ', (error, results, fields) => {
                 if(error){
                     console.log(error);
                     res.json(error);
