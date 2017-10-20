@@ -112,7 +112,7 @@ export default ({ config, db }) => {
      */
     api.post('/usuario', (req, res ) => {
         var aux = {};
-        if (req.body.username)          aux.nombre = req.body.username;
+        if (req.body.username)          aux.username = req.body.username;
         if (req.body.nombre_perfil)     aux.nombre_perfil = req.body.nombre_perfil;
         if (req.body.imagen)            aux.imagen = req.body.imagen;
         if (req.body.email)             aux.email = req.body.email;
