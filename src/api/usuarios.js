@@ -238,18 +238,28 @@ export default ({ config, db }) => {
      *                     $ref: '#/definitions/Usuario'
      */
     api.delete('/usuario', (req, res) => {
-        if(req.body.id_usuario){
-            connection.query('DELETE from usuarios where id_usuario = "' + req.body.id_usuario + '" ', (error, results, fields) => {
-                if(error){
-                    console.log(error);
-                    res.json(error);
-                }
-                if(results){
-                    console.log(results);
-                    res.json(results);
-                }
-            });
+        var wheres = [];
+        var where = '';
+        for (var atr of Object.keys(req.query)){
+            if (atr == 'username' || atr == 'id_usuario'){
+                wheres.push(' ' + atr + ' = "' + req.query[atr] + '" ');
+            }
         }
+        for(var i = 0; i < wheres.length; i++){
+            if (i == 0)  where += ' where ' + wheres[i];
+            else        where += ' and ' + wheres[i];
+        }
+
+        connection.query('DELETE from usuarios ' + where + ' ', (error, results, fields) => {
+            if(error){
+                console.log(error);
+                res.json(error);
+            }
+            if(results){
+                console.log(results);
+                res.json(results);
+            }
+        });
     });
 
     return api;
