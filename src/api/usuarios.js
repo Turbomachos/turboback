@@ -185,7 +185,7 @@ export default ({ config, db }) => {
                 wheres.push(' ' + atr + " = '" + req.body[atr] + "' ");
             }
             if(atr == 'password'){
-                wheres.push(' ' + atr + ' = "' + TurboUtils.generateHash(req.body["atr"]) + '" ');
+                wheres.push(' ' + atr + ' = "' + TurboUtils.generateHash(req.body[atr]) + '" ');
             }
         }
         for(var i = 0; i < wheres.length; i++){
