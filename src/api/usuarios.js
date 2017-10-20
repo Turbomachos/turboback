@@ -175,7 +175,11 @@ export default ({ config, db }) => {
      *             200:
      *                 description: Devuleve el usuario modificado
      *                 schema:
-     *                     $ref: '#/definitions/Usuario'
+     *                      type: object
+     *                      properties:
+     *                          affectedRows:
+     *                              type: integer
+     *                              example: 1
      */
     api.put('/usuario', (req, res ) => {
         var wheres = [];
@@ -200,8 +204,8 @@ export default ({ config, db }) => {
                     res.json(error);
                 }
                 if(results){
-                    console.log(results);
-                    res.json(results);
+                    console.log(results.affectedRows);
+                    res.json({affectedRows: results.affectedRows});
                 }
             });
         }
