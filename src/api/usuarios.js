@@ -202,7 +202,7 @@ export default ({ config, db }) => {
 
     /**
      * @swagger
-     * /api/miembros/miembro:
+     * /api/usuarios/usuario:
      *     delete:
      *         tags:
      *             - Usuarios
