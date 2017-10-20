@@ -1,4 +1,4 @@
-import sha1 from '../../node_modules/sha1/sha1';
+import sha1 from 'sha1';
 
 
 TurboUtils = {

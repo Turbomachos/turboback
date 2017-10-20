@@ -38,6 +38,7 @@
     "morgan": "^1.8.0",
     "mysql": "^2.15.0",
     "resource-router-middleware": "^0.6.0",
+    "sha1": "^1.1.1",
     "swagger-jsdoc": "^1.9.7"
   },
   "devDependencies": {
