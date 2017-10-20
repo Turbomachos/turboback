@@ -58,7 +58,7 @@ export default ({ config, db }) => {
             }
         }
         for(var i = 0; i < wheres.length; i++){
-            if (i = 0)  where += ' where ' + wheres[i];
+            if (i == 0)  where += ' where ' + wheres[i];
             else        where += ' and ' + wheres[i];
         }
 
@@ -189,7 +189,7 @@ export default ({ config, db }) => {
             }
         }
         for(var i = 0; i < wheres.length; i++){
-            if (i = 0)  where += ' ' + wheres[i];
+            if (i == 0)  where += ' ' + wheres[i];
             else        where += ', ' + wheres[i];
         }
 
