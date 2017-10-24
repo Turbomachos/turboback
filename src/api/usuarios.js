@@ -7,12 +7,11 @@ export default ({ config, db }) => {
     let api = Router();
 
     /**
-     *
      * @swagger
      * definition:
      *    Usuario:
      *        properties:
-     *            _id:
+     *            id_usuario:
      *                type: string
      *            username:
      *                type: string
@@ -21,9 +20,9 @@ export default ({ config, db }) => {
      *            email:
      *                type: string
      *            imagen:
-     *                type: integer
+     *                type: string
      *            nombre_perfil:
-     *                type: integer
+     *                type: string
      */
 
 

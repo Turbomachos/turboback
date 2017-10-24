@@ -1,0 +1,108 @@
+import { version } from '../../package.json';
+import { Router } from 'express';
+import connection from '../mysql/index';
+
+export default ({ config, db }) => {
+    let api = Router();
+
+    /**
+     * @swagger
+     * definition:
+     *    Rol-Permiso:
+     *        properties:
+     *            id_permiso:
+     *                type: integer
+     *            id_rol:
+     *                type: integer
+     */
+
+    /**
+     * @swagger
+     * /api/rolesPermisos/rolPermiso:
+     *     get:
+     *         tags:
+     *             - Permisos
+     *         description: devuelve las diferentes relaciones entre roles y permisos de turbomachos
+     *         produces:
+     *             - application/json
+     *         parameters:
+     *             - in: query
+     *               name: id_rol
+     *               type: integer
+     *             - in: query
+     *               name: id_permiso
+     *               type: integer
+     *         responses:
+     *             200:
+     *                 description: Un array de las diferentes relaciones entre roles y permisos de turbomachos
+     *                 schema:
+     *                     $ref: '#/definitions/Rol-Permiso'
+     */
+    api.get('/rolPermiso', (req, res) => {
+
+    });
+
+    /**
+     * @swagger
+     * /api/rolesPermisos/rolPermiso:
+     *     post:
+     *         tags:
+     *             - Permisos
+     *         description: Inserta una nueva relación entre un rol y un permiso
+     *         produces:
+     *             - application/json
+     *         parameters:
+     *             - in: body
+     *               name : Rol-Permiso
+     *               schema:
+     *                   type: object
+     *                   properties:
+     *                      id_permiso:
+     *                          type: integer
+     *                          example: 2
+     *                      id_rol:
+     *                          type: integer
+     *                          example: 65
+     *         responses:
+     *             200:
+     *                 description: Devuleve la nueva relación entre un rol y un permiso
+     *                 schema:
+     *                     $ref: '#/definitions/Rol-Permiso'
+     */
+    api.post('/rolPermiso', (req, res) => {
+
+    });
+
+    /**
+     * @swagger
+     * /api/rolesPermisos/rolPermiso:
+     *     delete:
+     *         tags:
+     *             - Permisos
+     *         description: Elimina una relación entre un rol y un permiso de la base de datos
+     *         produces:
+     *             - application/json
+     *         parameters:
+     *             - in: query
+     *               name : id_permiso
+     *               type: integer
+     *             - in: query
+     *               name: id_rol
+     *               type: integer
+     *
+     *         responses:
+     *             200:
+     *                 description: Relación entre un rol y un permiso eliminado con éxito
+     *                 schema:
+     *                      type: object
+     *                      properties:
+     *                          affectedRows:
+     *                              type: integer
+     *                              example: 1
+     */
+    api.delete('/rolPermiso', (req, res) => {
+
+    });
+
+    return api;
+}
