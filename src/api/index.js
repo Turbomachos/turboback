@@ -22,6 +22,7 @@ export default ({ config, db }) => {
     api.use('/permisos', permisos({ config, db }));
 
     api.use('/rolesPermisos', rolesPermisos({ config, db }));
+
     api.use('/usuariosRoles', usuariosRoles({ config, db }));
 
     return api;

@@ -96,13 +96,13 @@ export default ({ config, db }) => {
         if (req.body.id_usuario)       aux.id_usuario = req.body.id_usuario;
 
         if (aux.id_rol && aux.id_usuario){
-            connection.query('INSERT INTO roles SET ? ', aux,(error, results, fields) =>{
+            connection.query('INSERT INTO usuarios_roles SET ? ', aux,(error, results, fields) =>{
                 if(error){
                     console.log(error);
                     res.json(error);
                 }
                 if(results){
-                    connection.query('select * from roles where id_rol = "' + aux.id_rol + '" and id_usuario = "' +  aux.id_usuario + '"' , (error, results, fields)=>{
+                    connection.query('select * from usuarios_roles where id_rol = "' + aux.id_rol + '" and id_usuario = "' +  aux.id_usuario + '"' , (error, results, fields)=>{
                         if(error){
                             console.log(error);
                             res.json(error);
@@ -157,7 +157,7 @@ export default ({ config, db }) => {
             else        where += ' and ' + wheres[i];
         }
 
-        connection.query('DELETE from roles ' + where + ' ', (error, results, fields) => {
+        connection.query('DELETE from usuarios_roles ' + where + ' ', (error, results, fields) => {
             if(error){
                 console.log(error);
                 res.json(error);
