@@ -1,6 +1,6 @@
 import { version } from '../../package.json';
 import { Router } from 'express';
-import connection from '../mysql/index';
+import RolesController from '../controllers/rolesController'
 
 export default ({ config, db }) => {
     let api = Router();
@@ -41,19 +41,9 @@ export default ({ config, db }) => {
      *                     $ref: '#/definitions/Rol'
      */
     api.get('/rol', (req, res) => {
-        var wheres = [];
-        var where = '';
-        for (var atr of Object.keys(req.query)){
-            if (atr == 'id_rol' || atr == 'rol'){
-                wheres.push(' ' + atr + ' = "' + req.query[atr] + '" ');
-            }
-        }
-        for(var i = 0; i < wheres.length; i++){
-            if (i == 0)  where += ' where ' + wheres[i];
-            else        where += ' and ' + wheres[i];
-        }
+        let aux = req.query;
 
-        connection.query('select * from roles' + where, (error, results, fields)=>{
+        RolesController.getRol(aux, (error, results, fields) => {
             if(error){
                 console.log(error);
                 res.json(error);
@@ -93,17 +83,17 @@ export default ({ config, db }) => {
      *                     $ref: '#/definitions/Rol'
      */
     api.post('/rol', (req, res) => {
-        var aux = {};
+        let aux = {};
         if (req.body.rol)               aux.rol = req.body.rol;
         if (req.body.descripcion)       aux.descripcion = req.body.descripcion;
 
-        connection.query('INSERT INTO roles SET ? ', aux,(error, results, fields) =>{
+        RolesController.postRol(aux, (error, results, fields) => {
             if(error){
                 console.log(error);
                 res.json(error);
             }
             if(results){
-                connection.query('select * from roles where id_rol = "' + results.insertId + '"' , (error, results, fields)=>{
+                RolesController.getRol({id_rol:results.insertId}, (error, results, fields) => {
                     if(error){
                         console.log(error);
                         res.json(error);
@@ -115,6 +105,7 @@ export default ({ config, db }) => {
                 });
             }
         });
+
     });
 
     /**
@@ -152,30 +143,18 @@ export default ({ config, db }) => {
      *                              example: 1
      */
     api.put('/rol', (req, res) => {
-        var wheres = [];
-        var where = '';
-        for (var atr of Object.keys(req.body)){
-            if (atr == 'rol' || atr == 'descripcion'){
-                wheres.push(' ' + atr + " = '" + req.body[atr] + "' ");
-            }
-        }
-        for(var i = 0; i < wheres.length; i++){
-            if (i == 0)  where += ' ' + wheres[i];
-            else        where += ', ' + wheres[i];
-        }
+        let aux = req.body;
 
-        if(req.body.id_rol){
-            connection.query('UPDATE roles SET ' + where + ' where id_rol = "' + req.body.id_rol + '" ',(error, results, fields) =>{
-                if(error){
-                    console.log(error);
-                    res.json(error);
-                }
-                if(results){
-                    console.log(results.affectedRows);
-                    res.json({affectedRows: results.affectedRows});
-                }
-            });
-        }
+        RolesController.putRol(aux, (error, results, fields) => {
+            if(error){
+                console.log(error);
+                res.json(error);
+            }
+            if(results){
+                console.log(results.affectedRows);
+                res.json({affectedRows: results.affectedRows});
+            }
+        });
     });
 
     /**
@@ -206,19 +185,9 @@ export default ({ config, db }) => {
      *                              example: 1
      */
     api.delete('/rol', (req, res) => {
-        var wheres = [];
-        var where = '';
-        for (var atr of Object.keys(req.query)){
-            if (atr == 'rol' || atr == 'id_rol'){
-                wheres.push(' ' + atr + ' = "' + req.query[atr] + '" ');
-            }
-        }
-        for(var i = 0; i < wheres.length; i++){
-            if (i == 0)  where += ' where ' + wheres[i];
-            else        where += ' and ' + wheres[i];
-        }
+        let aux = req.query;
 
-        connection.query('DELETE from roles ' + where + ' ', (error, results, fields) => {
+        RolesController.deleteRol(aux, (error, results, fields) => {
             if(error){
                 console.log(error);
                 res.json(error);

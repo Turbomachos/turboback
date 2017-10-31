@@ -1,7 +1,8 @@
 import { Router } from 'express';
 
 let hasPermission = (req) => {
-	return true;
+
+	return false;
 };
 
 export default ({ config, db }) => {

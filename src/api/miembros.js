@@ -1,7 +1,7 @@
 import { version } from '../../package.json';
 import { Router } from 'express';
-import Miembro from '../models/miembroModel';
 import moment from 'moment';
+import MiembroController from '../controllers/miembroController';
 
 export default ({ config, db }) => {
     let api = Router();
@@ -70,7 +70,7 @@ export default ({ config, db }) => {
         if (req.query.imagen)            aux.imagen = req.query.imagen;
         if (req.query._id)               aux._id = req.query._id;
 
-        Miembro.find(aux, function(error, resultado){
+        MiembroController.getMiembro(aux, (error, resultado) => {
             if (error) res.json({error:'errooooor'});
             else res.json(resultado);
         });
@@ -108,11 +108,12 @@ export default ({ config, db }) => {
         if (req.body.nombre)        aux.nombre = req.body.nombre;
         if (req.body.biografia)     aux.biografia = req.body.biografia;
         aux.fecha_union = moment().unix();
-        var miembro = new Miembro(aux);
-        miembro.save(function (err, miembro) {
+
+        MiembroController.postMiembro(aux, (err, miembro) => {
             if (err) return console.error(err);
             res.json(miembro);
         });
+
     });
 
 
@@ -163,16 +164,11 @@ export default ({ config, db }) => {
         if (req.body.fecha_union)       aux.fecha_union = req.body.fecha_union;
         if (req.body.fecha_salida)      aux.fecha_salida = req.body.fecha_salida;
         if (req.body.imagen)            aux.imagen = req.body.imagen;
-        if (req.body._id)               id = req.body._id;
-        Miembro.findById(id, function(error, miembro){
-            if (error) res.json({error:'errooooor'});
-            else {
-                miembro.set(aux);
-                miembro.save(function (err, miembro) {
-                    if (err) return console.error(err);
-                    res.json(miembro);
-                });
-            }
+        if (req.body._id)               aux._id = req.body._id;
+
+        MiembroController.putMiembro(aux, (error, miembro) => {
+            if (err) return console.error(err);
+            res.json(miembro);
         });
     });
 
@@ -221,8 +217,8 @@ export default ({ config, db }) => {
         if (req.query.fecha_salida)      aux.fecha_salida = req.query.fecha_salida;
         if (req.query.imagen)            aux.imagen = req.query.imagen;
         if (req.query._id)               aux._id = req.query._id;
-        console.log(aux);
-        Miembro.remove(aux, function(error, miembro){
+
+        MiembroController.deleteMiembro(aux, (error, miembro) => {
             if (error) res.json({error:'errooooor'});
             else {
                 res.json(miembro);

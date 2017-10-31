@@ -1,6 +1,6 @@
 import { version } from '../../package.json';
 import { Router } from 'express';
-import connection from '../mysql/index';
+import UsuariosController from '../controllers/usuariosController';
 import TurboUtils from '../utils/index';
 
 export default ({ config, db }) => {
@@ -49,19 +49,8 @@ export default ({ config, db }) => {
      *                     $ref: '#/definitions/Usuario'
      */
     api.get('/usuario', (req, res) => {
-        var wheres = [];
-        var where = '';
-        for (var atr of Object.keys(req.query)){
-            if (atr == 'username' || atr == 'id_usuario'){
-                wheres.push(' ' + atr + ' = "' + req.query[atr] + '" ');
-            }
-        }
-        for(var i = 0; i < wheres.length; i++){
-            if (i == 0)  where += ' where ' + wheres[i];
-            else        where += ' and ' + wheres[i];
-        }
-
-        connection.query('select * from usuarios' + where, (error, results, fields)=>{
+        let aux = req.query;
+        UsuariosController.getUsuario(aux, (error, results, fields) => {
             if(error){
                 console.log(error);
                 res.json(error);
@@ -110,20 +99,20 @@ export default ({ config, db }) => {
      *                     $ref: '#/definitions/Usuario'
      */
     api.post('/usuario', (req, res ) => {
-        var aux = {};
+        let aux = {};
         if (req.body.username)          aux.username = req.body.username;
         if (req.body.nombre_perfil)     aux.nombre_perfil = req.body.nombre_perfil;
         if (req.body.imagen)            aux.imagen = req.body.imagen;
         if (req.body.email)             aux.email = req.body.email;
         if (req.body.password)          aux.password = TurboUtils.generateHash(req.body.password);
 
-        connection.query('INSERT INTO usuarios SET ? ', aux,(error, results, fields) =>{
+        UsuariosController.postUsuario(aux, (error, results, fields) => {
             if(error){
                 console.log(error);
                 res.json(error);
             }
             if(results){
-                connection.query('select * from usuarios where id_usuario = "' + results.insertId + '"' , (error, results, fields)=>{
+                UsuariosController.getUsuario({id_usuario:results.insertId}, (error, results, fields) => {
                     if(error){
                         console.log(error);
                         res.json(error);
@@ -181,33 +170,18 @@ export default ({ config, db }) => {
      *                              example: 1
      */
     api.put('/usuario', (req, res ) => {
-        var wheres = [];
-        var where = '';
-        for (var atr of Object.keys(req.body)){
-            if (atr == 'username' || atr == 'nombre_perfil' || atr == 'imagen' || atr == 'email'){
-                wheres.push(' ' + atr + " = '" + req.body[atr] + "' ");
-            }
-            if(atr == 'password'){
-                wheres.push(' ' + atr + ' = "' + TurboUtils.generateHash(req.body[atr]) + '" ');
-            }
-        }
-        for(var i = 0; i < wheres.length; i++){
-            if (i == 0)  where += ' ' + wheres[i];
-            else        where += ', ' + wheres[i];
-        }
+        let aux = req.body;
 
-        if(req.body.id_usuario){
-            connection.query('UPDATE usuarios SET ' + where + ' where id_usuario = "' + req.body.id_usuario + '" ',(error, results, fields) =>{
-                if(error){
-                    console.log(error);
-                    res.json(error);
-                }
-                if(results){
-                    console.log(results.affectedRows);
-                    res.json({affectedRows: results.affectedRows});
-                }
-            });
-        }
+        UsuariosController.putUsuario(aux, (error, results, fields) => {
+            if(error){
+                console.log(error);
+                res.json(error);
+            }
+            if(results){
+                console.log(results.affectedRows);
+                res.json({affectedRows: results.affectedRows});
+            }
+        });
     });
 
     /**
@@ -244,19 +218,9 @@ export default ({ config, db }) => {
      *                              example: 1
      */
     api.delete('/usuario', (req, res) => {
-        var wheres = [];
-        var where = '';
-        for (var atr of Object.keys(req.query)){
-            if (atr == 'username' || atr == 'id_usuario' || atr == 'email' || atr == 'nombre_perfil'){
-                wheres.push(' ' + atr + ' = "' + req.query[atr] + '" ');
-            }
-        }
-        for(var i = 0; i < wheres.length; i++){
-            if (i == 0)  where += ' where ' + wheres[i];
-            else        where += ' and ' + wheres[i];
-        }
+        let aux = req.query;
 
-        connection.query('DELETE from usuarios ' + where + ' ', (error, results, fields) => {
+        UsuariosController.deleteUsuario(aux, (error, results, fields) => {
             if(error){
                 console.log(error);
                 res.json(error);

@@ -1,6 +1,7 @@
 import { version } from '../../package.json';
 import { Router } from 'express';
-import connection from '../mysql/index';
+import PermisosController from '../controllers/permisosController';
+
 
 export default ({ config, db }) => {
     let api = Router();
@@ -41,28 +42,17 @@ export default ({ config, db }) => {
      *                     $ref: '#/definitions/Permiso'
      */
     api.get('/permiso', (req, res) => {
-        var wheres = [];
-        var where = '';
-        for (var atr of Object.keys(req.query)){
-            if (atr == 'id_permiso' || atr == 'permiso'){
-                wheres.push(' ' + atr + ' = "' + req.query[atr] + '" ');
-            }
-        }
-        for(var i = 0; i < wheres.length; i++){
-            if (i == 0)  where += ' where ' + wheres[i];
-            else        where += ' and ' + wheres[i];
-        }
+        var aux = req.query;
 
-        connection.query('select * from permisos' + where, (error, results, fields)=>{
+        PermisosController.getPermiso(aux, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
-                console.log(results);
                 res.json(results);
             }
         });
+
     });
 
     /**
@@ -97,24 +87,22 @@ export default ({ config, db }) => {
         if (req.body.permiso)           aux.permiso = req.body.permiso;
         if (req.body.descripcion)       aux.descripcion = req.body.descripcion;
 
-        connection.query('INSERT INTO permisos SET ? ', aux,(error, results, fields) =>{
+        PermisosController.postPermiso(aux, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
-                connection.query('select * from permisos where id_permiso = "' + results.insertId + '"' , (error, results, fields)=>{
+                PermisosController.getPermiso({id_permiso : results.insertId}, (error, results, fields) => {
                     if(error){
-                        console.log(error);
                         res.json(error);
                     }
                     if(results){
-                        console.log(results);
                         res.json(results);
                     }
                 });
             }
         });
+
     });
 
     /**
@@ -152,30 +140,19 @@ export default ({ config, db }) => {
      *                              example: 1
      */
     api.put('/permiso', (req, res) => {
-        var wheres = [];
-        var where = '';
-        for (var atr of Object.keys(req.body)){
-            if (atr == 'permiso' || atr == 'descripcion'){
-                wheres.push(' ' + atr + " = '" + req.body[atr] + "' ");
-            }
-        }
-        for(var i = 0; i < wheres.length; i++){
-            if (i == 0)  where += ' ' + wheres[i];
-            else        where += ', ' + wheres[i];
-        }
+        let aux = req.body;
 
-        if(req.body.id_permiso){
-            connection.query('UPDATE permisos SET ' + where + ' where id_permiso = "' + req.body.id_permiso + '" ',(error, results, fields) =>{
-                if(error){
-                    console.log(error);
-                    res.json(error);
-                }
-                if(results){
-                    console.log(results.affectedRows);
-                    res.json({affectedRows: results.affectedRows});
-                }
-            });
-        }
+        PermisosController.putPermiso(aux, (error, results, fields) => {
+            if(error){
+                console.log(error);
+                res.json(error);
+            }
+            if(results){
+                console.log(results.affectedRows);
+                res.json({affectedRows: results.affectedRows});
+            }
+        });
+
     });
 
     /**
@@ -206,19 +183,9 @@ export default ({ config, db }) => {
      *                              example: 1
      */
     api.delete('/permiso', (req, res) => {
-        var wheres = [];
-        var where = '';
-        for (var atr of Object.keys(req.query)){
-            if (atr == 'permiso' || atr == 'id_permiso'){
-                wheres.push(' ' + atr + ' = "' + req.query[atr] + '" ');
-            }
-        }
-        for(var i = 0; i < wheres.length; i++){
-            if (i == 0)  where += ' where ' + wheres[i];
-            else        where += ' and ' + wheres[i];
-        }
+        let aux = req.query;
 
-        connection.query('DELETE from permisos ' + where + ' ', (error, results, fields) => {
+        PermisosController.deletePermiso(obj, (error, results, fields) => {
             if(error){
                 console.log(error);
                 res.json(error);
