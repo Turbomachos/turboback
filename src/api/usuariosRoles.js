@@ -18,7 +18,7 @@ export default ({ config, db }) => {
 
     /**
      * @swagger
-     * /api/usuariosRoles/usuarioRola:
+     * /api/usuariosRoles/usuarioRol:
      *     get:
      *         tags:
      *             - Permisos

@@ -5,6 +5,7 @@ import usuarios from './usuarios';
 import roles from './roles';
 import permisos from './permisos';
 import rolesPermisos from './rolesPermisos';
+import usuariosRoles from './usuariosRoles';
 import middleware from '../middleware';
 
 export default ({ config, db }) => {
@@ -21,6 +22,7 @@ export default ({ config, db }) => {
     api.use('/permisos', permisos({ config, db }));
 
     api.use('/rolesPermisos', rolesPermisos({ config, db }));
+    api.use('/usuariosRoles', usuariosRoles({ config, db }));
 
     return api;
 }
