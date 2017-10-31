@@ -4,11 +4,9 @@ import cors from 'cors';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import initializeDb from './db';
-import middleware from './middleware';
 import api from './api';
 import config from './config.json';
 import mongoose from 'mongoose';
-import Miembro from './models/miembroModel';
 import swaggerJSDoc from 'swagger-jsdoc';
 
 import mysql from 'mysql';
@@ -23,7 +21,6 @@ let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log('connected!');
-
 });
 
 var swaggerDefinition = {
@@ -61,8 +58,6 @@ app.use(bodyParser.json({
 
 // connect to db
 initializeDb( db => {
-	// internal middleware
-	app.use(middleware({ config, db }));
 	// api router
 	app.use('/api', api({ config, db }));
 

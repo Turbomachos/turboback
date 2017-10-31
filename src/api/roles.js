@@ -41,7 +41,28 @@ export default ({ config, db }) => {
      *                     $ref: '#/definitions/Rol'
      */
     api.get('/rol', (req, res) => {
+        var wheres = [];
+        var where = '';
+        for (var atr of Object.keys(req.query)){
+            if (atr == 'id_rol' || atr == 'rol'){
+                wheres.push(' ' + atr + ' = "' + req.query[atr] + '" ');
+            }
+        }
+        for(var i = 0; i < wheres.length; i++){
+            if (i == 0)  where += ' where ' + wheres[i];
+            else        where += ' and ' + wheres[i];
+        }
 
+        connection.query('select * from roles' + where, (error, results, fields)=>{
+            if(error){
+                console.log(error);
+                res.json(error);
+            }
+            if(results){
+                console.log(results);
+                res.json(results);
+            }
+        });
     });
 
     /**
@@ -72,7 +93,28 @@ export default ({ config, db }) => {
      *                     $ref: '#/definitions/Rol'
      */
     api.post('/rol', (req, res) => {
+        var aux = {};
+        if (req.body.rol)               aux.rol = req.body.rol;
+        if (req.body.descripcion)       aux.descripcion = req.body.descripcion;
 
+        connection.query('INSERT INTO roles SET ? ', aux,(error, results, fields) =>{
+            if(error){
+                console.log(error);
+                res.json(error);
+            }
+            if(results){
+                connection.query('select * from roles where id_rol = "' + results.insertId + '"' , (error, results, fields)=>{
+                    if(error){
+                        console.log(error);
+                        res.json(error);
+                    }
+                    if(results){
+                        console.log(results);
+                        res.json(results);
+                    }
+                });
+            }
+        });
     });
 
     /**
@@ -110,7 +152,30 @@ export default ({ config, db }) => {
      *                              example: 1
      */
     api.put('/rol', (req, res) => {
+        var wheres = [];
+        var where = '';
+        for (var atr of Object.keys(req.body)){
+            if (atr == 'rol' || atr == 'descripcion'){
+                wheres.push(' ' + atr + " = '" + req.body[atr] + "' ");
+            }
+        }
+        for(var i = 0; i < wheres.length; i++){
+            if (i == 0)  where += ' ' + wheres[i];
+            else        where += ', ' + wheres[i];
+        }
 
+        if(req.body.id_rol){
+            connection.query('UPDATE roles SET ' + where + ' where id_rol = "' + req.body.id_rol + '" ',(error, results, fields) =>{
+                if(error){
+                    console.log(error);
+                    res.json(error);
+                }
+                if(results){
+                    console.log(results.affectedRows);
+                    res.json({affectedRows: results.affectedRows});
+                }
+            });
+        }
     });
 
     /**
@@ -141,7 +206,28 @@ export default ({ config, db }) => {
      *                              example: 1
      */
     api.delete('/rol', (req, res) => {
+        var wheres = [];
+        var where = '';
+        for (var atr of Object.keys(req.query)){
+            if (atr == 'rol' || atr == 'id_rol'){
+                wheres.push(' ' + atr + ' = "' + req.query[atr] + '" ');
+            }
+        }
+        for(var i = 0; i < wheres.length; i++){
+            if (i == 0)  where += ' where ' + wheres[i];
+            else        where += ' and ' + wheres[i];
+        }
 
+        connection.query('DELETE from roles ' + where + ' ', (error, results, fields) => {
+            if(error){
+                console.log(error);
+                res.json(error);
+            }
+            if(results){
+                console.log(results.affectedRows);
+                res.json({affectedRows: results.affectedRows});
+            }
+        });
     });
 
     return api;

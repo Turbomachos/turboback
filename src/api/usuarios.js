@@ -208,7 +208,6 @@ export default ({ config, db }) => {
                 }
             });
         }
-
     });
 
     /**
