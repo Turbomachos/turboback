@@ -1,5 +1,9 @@
 import { Router } from 'express';
 
+let hasPermission = (req) => {
+	return true;
+};
+
 export default ({ config, db }) => {
 	let routes = Router();
 
