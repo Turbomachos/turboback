@@ -2,6 +2,7 @@ import { version } from '../../package.json';
 import { Router } from 'express';
 import UsuariosController from '../controllers/usuariosController';
 import TurboUtils from '../utils/index';
+import UsuariosRolesController from '../controllers/usuariosRolesController';
 
 export default ({ config, db }) => {
     let api = Router();
@@ -112,6 +113,7 @@ export default ({ config, db }) => {
                 res.json(error);
             }
             if(results){
+                UsuariosRolesController.postUsuarioRol({id_rol:3, id_usuario: results.insertId});
                 UsuariosController.getUsuario({id_usuario:results.insertId}, (error, results, fields) => {
                     if(error){
                         console.log(error);
@@ -180,6 +182,7 @@ export default ({ config, db }) => {
             }
             if(results){
                 console.log(results.affectedRows);
+
                 res.json({affectedRows: results.affectedRows});
             }
         });

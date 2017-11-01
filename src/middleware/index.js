@@ -8,13 +8,18 @@ export default ({ config, db }) => {
 
 	routes.use((req, res, next) => {
 
+        let endpoint = req.method + req.path;
+        if(endpoint == 'POST/usuarios/login' || endpoint == 'POST/usuarios/usuario'){
+            next();
+        }
+
         if(!req.headers.authorization){
             res.status(403).send(config.NO_AUTORIZADO);
         }
-        let endpoint = req.method + req.path;
         let token_encoded = req.headers.authorization.split(" ")[1];
         let token_decoded = jwt.decode(token_encoded, config.SECRET_TOKEN);
         let roles = token_decoded.roles;
+
 
         if(token_decoded.f_expiracion <= moment().unix()){
             res.status(401).send(config.TOKEN_EXPIRADO);
@@ -24,7 +29,6 @@ export default ({ config, db }) => {
             return config.PERMISOS_ENDPOINT[endpoint].indexOf(rol) >= 0;
         });
 
-        continuar = true;
         if (continuar){
             next();
         }else{
