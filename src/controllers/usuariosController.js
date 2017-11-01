@@ -68,7 +68,7 @@ let controller = {
     },
 
     login : (user, pwd, callback) => {
-        connection.query('select * from usuarios username = "' + user + '" and password = "' + pwd + '" ', (error, results, fields)=>{
+        connection.query('select * from usuarios where username = "' + user + '" and password = "' + pwd + '" ', (error, results, fields)=>{
             callback(error, results, fields);
         });
     }
