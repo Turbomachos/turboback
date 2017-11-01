@@ -11,29 +11,31 @@ export default ({ config, db }) => {
         let endpoint = req.method + req.path;
         if(endpoint == 'POST/usuarios/login' || endpoint == 'POST/usuarios/usuario'){
             next();
-        }
-
-        if(!req.headers.authorization){
-            res.status(403).send(config.NO_AUTORIZADO);
-        }
-        let token_encoded = req.headers.authorization.split(" ")[1];
-        let token_decoded = jwt.decode(token_encoded, config.SECRET_TOKEN);
-        let roles = token_decoded.roles;
-
-
-        if(token_decoded.f_expiracion <= moment().unix()){
-            res.status(401).send(config.TOKEN_EXPIRADO);
-        }
-
-        let continuar = roles.some((rol) => {
-            return config.PERMISOS_ENDPOINT[endpoint].indexOf(rol) >= 0;
-        });
-
-        if (continuar){
-            next();
         }else{
-            res.status(403).send(config.NO_AUTORIZADO);
+            if(!req.headers.authorization){
+                res.status(403).send(config.NO_AUTORIZADO);
+            }else{
+                let token_encoded = req.headers.authorization.split(" ")[1];
+                let token_decoded = jwt.decode(token_encoded, config.SECRET_TOKEN);
+                let roles = token_decoded.roles;
+
+
+                if(token_decoded.f_expiracion <= moment().unix()){
+                    res.status(401).send(config.TOKEN_EXPIRADO);
+                }else{
+                    let continuar = roles.some((rol) => {
+                        return config.PERMISOS_ENDPOINT[endpoint].indexOf(rol) >= 0;
+                    });
+
+                    if (continuar){
+                        next();
+                    }else{
+                        res.status(403).send(config.NO_AUTORIZADO);
+                    }
+                }
+            }
         }
+
 
 	});
 

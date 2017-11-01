@@ -263,17 +263,18 @@ export default ({ config, db }) => {
      *                 schema:
      *                     $ref: '#/definitions/Usuario'
      */
-    api.post('login', (req, res) => {
+    api.post('/login', (req, res) => {
         let aux = {};
         if (req.body.username)          aux.username = req.body.username;
         if (req.body.password)          aux.password = TurboUtils.generateHash(req.body.password);
-        UsuariosController.getUsuarioRol(aux, (error, results, values) => {
+
+        UsuariosController.login(aux.username, aux.password, (error, results, values) => {
            if(error){
-               res.json({error: 'errooooor'})
+               res.json({error: error})
            }
-           if(results.length == 1){
-               results[0].token = TurboUtils.createToken(results[0]);
-               res.json(results[0]);
+           if(results){
+               results.token = TurboUtils.createToken(results);
+               res.json(results);
            }
         });
     });

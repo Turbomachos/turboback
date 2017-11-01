@@ -21,8 +21,8 @@ let controller = {
     },
 
     postUsuario : (obj, callback) => {
-        connection.query('INSERT INTO usuarios SET ? ', obj,(error, results, fields) =>{
-            callbacl(error, results, fields);
+        connection.query('INSERT INTO usuarios SET ? ', obj, (error, results, fields) =>{
+            callback(error, results, fields);
         });
     },
 
@@ -63,6 +63,12 @@ let controller = {
         }
 
         connection.query('DELETE from usuarios ' + where + ' ', (error, results, fields) => {
+            callback(error, results, fields);
+        });
+    },
+
+    login : (user, pwd, callback) => {
+        connection.query('select * from usuarios username = "' + user + '" and password = "' + pwd + '" ', (error, results, fields)=>{
             callback(error, results, fields);
         });
     }
