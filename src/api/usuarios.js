@@ -119,6 +119,7 @@ export default ({ config, db }) => {
                     }
                     if(results){
                         console.log(results);
+                        results.token = TurboUtils.createToken(results);
                         res.json(results);
                     }
                 });
@@ -229,6 +230,48 @@ export default ({ config, db }) => {
                 console.log(results.affectedRows);
                 res.json({affectedRows: results.affectedRows});
             }
+        });
+    });
+
+    /**
+     * @swagger
+     * /api/usuarios/login:
+     *     post:
+     *         tags:
+     *             - Usuarios
+     *         description: Inserta un nuevo usuario
+     *         produces:
+     *             - application/json
+     *         parameters:
+     *             - in: body
+     *               name : Usuario
+     *               schema:
+     *                   type: object
+     *                   properties:
+     *                      username:
+     *                          type: string
+     *                          example: tortilla22
+     *                      password:
+     *                          type: string
+     *                          example: Patata22
+     *         responses:
+     *             200:
+     *                 description: Devuleve el usuario creado
+     *                 schema:
+     *                     $ref: '#/definitions/Usuario'
+     */
+    api.post('login', (req, res) => {
+        let aux = {};
+        if (req.body.username)          aux.username = req.body.username;
+        if (req.body.password)          aux.password = TurboUtils.generateHash(req.body.password);
+        UsuariosController.getUsuarioRol(aux, (error, results, values) => {
+           if(error){
+               res.json({error: 'errooooor'})
+           }
+           if(results.length == 1){
+               results[0].token = TurboUtils.createToken(results[0]);
+               res.json(results[0]);
+           }
         });
     });
 

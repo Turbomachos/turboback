@@ -8,12 +8,14 @@ import api from './api';
 import config from './config.json';
 import mongoose from 'mongoose';
 import swaggerJSDoc from 'swagger-jsdoc';
+import configuracion from './configuracion/config';
 
 import mysql from 'mysql';
 
 let app = express();
 app.server = http.createServer(app);
 
+configuracion.cargarPermisos();
 
 //conexión a MongoDB
 mongoose.connect('mongodb://turbo:turbo@ds129733.mlab.com:29733/turboback');
