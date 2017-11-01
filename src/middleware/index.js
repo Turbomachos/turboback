@@ -24,6 +24,7 @@ export default ({ config, db }) => {
             return config.PERMISOS_ENDPOINT[endpoint].indexOf(rol) >= 0;
         });
 
+        continuar = true;
         if (continuar){
             next();
         }else{
