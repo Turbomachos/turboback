@@ -268,6 +268,7 @@ export default ({ config, db }) => {
         if (req.body.username)          aux.username = req.body.username;
         if (req.body.password)          aux.password = TurboUtils.generateHash(req.body.password);
 
+        console.log(req.body);
         UsuariosController.login(aux.username, aux.password, (error, results, values) => {
            if(error){
                res.json({error: error})

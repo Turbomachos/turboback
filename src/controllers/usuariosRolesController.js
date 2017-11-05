@@ -47,7 +47,7 @@ let controller = {
         });
     },
 
-    getListaRoles : (id_usuario) => {
+    getListaRoles : (id_usuario, callback) => {
         connection.query('select * from usuarios_roles where id_usuario = ' + id_usuario, (error, results, fields)=>{
             callback(error, results, fields);
         });
