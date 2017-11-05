@@ -268,14 +268,18 @@ export default ({ config, db }) => {
         if (req.body.username)          aux.username = req.body.username;
         if (req.body.password)          aux.password = TurboUtils.generateHash(req.body.password);
 
-        console.log(req.body);
+        if(!aux.username || aux.password){
+            res.json({error: "error"})
+        }
         UsuariosController.login(aux.username, aux.password, (error, results, values) => {
            if(error){
                res.json({error: error})
            }
-           if(results){
-               results.token = TurboUtils.createToken(results);
-               res.json(results);
+           if(results.length == 1){
+               results[0].token = TurboUtils.createToken(results[0]);
+               res.json(results[0]);
+           }else{
+               res.json({error: "error"})
            }
         });
     });
