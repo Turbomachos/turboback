@@ -116,7 +116,10 @@ export default ({ config, db }) => {
                         res.json(error);
                     }
                     if(results){
-                        results.token = TurboUtils.createToken(results);
+                        TurboUtils.createToken(results, (token) => {
+                            results.token = token;
+                            res.json(results);
+                        });
                         res.json(results);
                     }
                 });
