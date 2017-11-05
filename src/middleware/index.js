@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import jwt from 'jwt-simple';
-import config from '../configuracion/config';
+import configuracion from '../configuracion/config';
 import moment from 'moment';
 
 export default ({ config, db }) => {
@@ -13,30 +13,27 @@ export default ({ config, db }) => {
             next();
         }else{
             if(!req.headers.authorization){
-                res.status(403).send(config.NO_AUTORIZADO);
+                res.status(403).send(configuracion.NO_AUTORIZADO);
             }else{
                 let token_encoded = req.headers.authorization.split(" ")[1];
-                let token_decoded = jwt.decode(token_encoded, config.SECRET_TOKEN);
+                let token_decoded = jwt.decode(token_encoded, configuracion.SECRET_TOKEN);
                 let roles = token_decoded.roles;
 
-
                 if(token_decoded.f_expiracion <= moment().unix()){
-                    res.status(401).send(config.TOKEN_EXPIRADO);
+                    res.status(401).send(configuracion.TOKEN_EXPIRADO);
                 }else{
                     let continuar = roles.some((rol) => {
-                        return config.PERMISOS_ENDPOINT[endpoint].indexOf(rol) >= 0;
+                        return configuracion.PERMISOS_ENDPOINT[endpoint].indexOf(rol.id_rol) >= 0;
                     });
 
                     if (continuar){
                         next();
                     }else{
-                        res.status(403).send(config.NO_AUTORIZADO);
+                        res.status(403).send(configuracion.NO_AUTORIZADO);
                     }
                 }
             }
         }
-
-
 	});
 
 	return routes;

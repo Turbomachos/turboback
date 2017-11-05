@@ -45,11 +45,9 @@ export default ({ config, db }) => {
 
         RolesController.getRol(aux, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
-                console.log(results);
                 res.json(results);
             }
         });
@@ -89,17 +87,14 @@ export default ({ config, db }) => {
 
         RolesController.postRol(aux, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
                 RolesController.getRol({id_rol:results.insertId}, (error, results, fields) => {
                     if(error){
-                        console.log(error);
                         res.json(error);
                     }
                     if(results){
-                        console.log(results);
                         res.json(results);
                     }
                 });
@@ -147,11 +142,9 @@ export default ({ config, db }) => {
 
         RolesController.putRol(aux, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
-                console.log(results.affectedRows);
                 res.json({affectedRows: results.affectedRows});
             }
         });
@@ -189,11 +182,9 @@ export default ({ config, db }) => {
 
         RolesController.deleteRol(aux, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
-                console.log(results.affectedRows);
                 res.json({affectedRows: results.affectedRows});
             }
         });

@@ -62,7 +62,7 @@ export default ({ config, db }) => {
      */
 
     api.get('/miembro', (req, res) => {
-        var aux = {};
+        let aux = {};
         if (req.query.nombre)            aux.nombre = req.query.nombre;
         if (req.query.biografia)         aux.biografia = req.query.biografia;
         if (req.query.fecha_union)       aux.fecha_union = req.query.fecha_union;

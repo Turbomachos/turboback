@@ -144,11 +144,9 @@ export default ({ config, db }) => {
 
         PermisosController.putPermiso(aux, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
-                console.log(results.affectedRows);
                 res.json({affectedRows: results.affectedRows});
             }
         });
@@ -187,11 +185,9 @@ export default ({ config, db }) => {
 
         PermisosController.deletePermiso(obj, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
-                console.log(results.affectedRows);
                 res.json({affectedRows: results.affectedRows});
             }
         });

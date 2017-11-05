@@ -43,11 +43,9 @@ export default ({ config, db }) => {
 
         UsuariosRolesController.getUsuarioRol(aux, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
-                console.log(results);
                 res.json(results);
             }
         });
@@ -87,17 +85,14 @@ export default ({ config, db }) => {
 
         UsuariosRolesController.postUsuarioRol(aux, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
                 UsuariosRolesController.getUsuarioRol(aux, (error, results, fields) => {
                     if(error){
-                        console.log(error);
                         res.json(error);
                     }
                     if(results){
-                        console.log(results);
                         res.json(results);
                     }
                 });
@@ -137,11 +132,9 @@ export default ({ config, db }) => {
 
         UsuariosRolesController.deleteUsuarioRol(aux, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
-                console.log(results.affectedRows);
                 res.json({affectedRows: results.affectedRows});
             }
         });

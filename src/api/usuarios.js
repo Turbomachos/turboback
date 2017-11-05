@@ -53,11 +53,9 @@ export default ({ config, db }) => {
         let aux = req.query;
         UsuariosController.getUsuario(aux, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
-                console.log(results);
                 res.json(results);
             }
         });
@@ -109,18 +107,15 @@ export default ({ config, db }) => {
 
         UsuariosController.postUsuario(aux, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
                 UsuariosRolesController.postUsuarioRol({id_rol:3, id_usuario: results.insertId});
                 UsuariosController.getUsuario({id_usuario:results.insertId}, (error, results, fields) => {
                     if(error){
-                        console.log(error);
                         res.json(error);
                     }
                     if(results){
-                        console.log(results);
                         results.token = TurboUtils.createToken(results);
                         res.json(results);
                     }
@@ -177,12 +172,9 @@ export default ({ config, db }) => {
 
         UsuariosController.putUsuario(aux, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
-                console.log(results.affectedRows);
-
                 res.json({affectedRows: results.affectedRows});
             }
         });
@@ -226,11 +218,9 @@ export default ({ config, db }) => {
 
         UsuariosController.deleteUsuario(aux, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
-                console.log(results.affectedRows);
                 res.json({affectedRows: results.affectedRows});
             }
         });
@@ -269,15 +259,17 @@ export default ({ config, db }) => {
         if (req.body.password)          aux.password = TurboUtils.generateHash(req.body.password);
 
         if(!aux.username || !aux.password){
-            res.json({error: "error"})
+            res.json({error: "errrrror"})
         }
         UsuariosController.login(aux.username, aux.password, (error, results, values) => {
            if(error){
                res.json({error: error})
            }
            if(results.length == 1){
-               results[0].token = TurboUtils.createToken(results[0]);
-               res.json(results[0]);
+              TurboUtils.createToken(results[0], (token) => {
+                  results[0].token = token;
+                  res.json(results[0]);
+              });
            }else{
                res.json({error: "error"})
            }

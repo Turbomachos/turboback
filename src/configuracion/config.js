@@ -1,20 +1,21 @@
 import RolesPermisos from '../controllers/rolesPermisosController';
 
-let permisos = {};
 
 let cargarPermisos = () => {
-    RolesPermisos.getRolPermiso({}, (error, results, fields) => {
+    let permisos = {};
+    RolesPermisos.getEndpoints({}, (error, results, fields) => {
         for(let rolPermiso of results){
-            if(!permisos[rolPermiso.id_permiso])permisos[rolPermiso.id_permiso] = [];
-            permisos[rolPermiso.id_permiso].push(rolPermiso.id_rol)
+            if(!permisos[rolPermiso.permiso])permisos[rolPermiso.permiso] = [];
+            permisos[rolPermiso.permiso].push(rolPermiso.id_rol)
         }
+        config.PERMISOS_ENDPOINT = permisos;
     });
 };
 
 
 let config = {
     cargarPermisos : cargarPermisos,
-    PERMISOS_ENDPOINT : permisos,
+    PERMISOS_ENDPOINT : undefined,
     SECRET_TOKEN : 'tokendemierdaparapruebasnosecretas',
     TOKEN_EXPIRADO : 'EL token ha expirado',
     NO_AUTORIZADO : 'NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN\n'

@@ -48,7 +48,7 @@ let controller = {
     },
 
     getListaRoles : (id_usuario, callback) => {
-        connection.query('select * from usuarios_roles where id_usuario = ' + id_usuario, (error, results, fields)=>{
+        connection.query('select id_rol from usuarios_roles where id_usuario = ' + id_usuario, (error, results, fields)=>{
             callback(error, results, fields);
         });
     }

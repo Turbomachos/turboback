@@ -10,8 +10,8 @@ var TurboUtils = {
         return sha1(string);
     },
 
-    createToken : (user) => {
-        return UsuariosRoles.getListaRoles(user.id_usuario, (error, results, fields) => {
+    createToken : (user, callback) => {
+       UsuariosRoles.getListaRoles(user.id_usuario, (error, results, fields) => {
             let token = {
                 username: user.username,
                 id_usuario: user.id_usuario,
@@ -20,8 +20,7 @@ var TurboUtils = {
                 f_creacion: moment().unix(),
                 f_expiracion: moment().add(14, 'days').unix(),
             };
-            console.log(token);
-            return jwt.encode(token, config.SECRET_TOKEN);
+            callback(jwt.encode(token, config.SECRET_TOKEN));
         });
 
     },

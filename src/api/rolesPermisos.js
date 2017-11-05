@@ -43,11 +43,9 @@ export default ({ config, db }) => {
 
         RolesPermisoController.getMiembro(aux, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
-                console.log(results);
                 res.json(results);
             }
         });
@@ -89,17 +87,14 @@ export default ({ config, db }) => {
 
         RolesPermisoController.postRolPermiso(aux, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
                 RolesPermisoController.getMiembro(aux, (error, results, fields) => {
                     if(error){
-                        console.log(error);
                         res.json(error);
                     }
                     if(results){
-                        console.log(results);
                         res.json(results);
                     }
                 });
@@ -140,11 +135,9 @@ export default ({ config, db }) => {
 
         RolesPermisoController.deleteRolPermiso(aux, (error, results, fields) => {
             if(error){
-                console.log(error);
                 res.json(error);
             }
             if(results){
-                console.log(results.affectedRows);
                 res.json({affectedRows: results.affectedRows});
             }
         });
