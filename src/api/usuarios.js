@@ -110,18 +110,19 @@ export default ({ config, db }) => {
                 res.json(error);
             }
             if(results){
-                UsuariosRolesController.postUsuarioRol({id_rol:3, id_usuario: results.insertId});
-                UsuariosController.getUsuario({id_usuario:results.insertId}, (error, results, fields) => {
-                    if(error){
-                        res.json(error);
-                    }
-                    if(results){
-                        TurboUtils.createToken(results, (token) => {
-                            results.token = token;
+                UsuariosRolesController.postUsuarioRol({id_rol:3, id_usuario: results.insertId}, () => {
+                    UsuariosController.getUsuario({id_usuario:results.insertId}, (error, results, fields) => {
+                        if(error){
+                            res.json(error);
+                        }
+                        if(results){
+                            TurboUtils.createToken(results, (token) => {
+                                results.token = token;
+                                res.json(results);
+                            });
                             res.json(results);
-                        });
-                        res.json(results);
-                    }
+                        }
+                    });
                 });
             }
         });
