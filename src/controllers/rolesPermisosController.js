@@ -1,4 +1,5 @@
 import connection from '../mysql';
+import configuracion from '../configuracion/config';
 
 let controller = {
 
@@ -23,6 +24,7 @@ let controller = {
     postRolPermiso : (obj, callback) => {
         if (obj.id_rol && obj.id_permiso){
             connection.query('INSERT INTO roles_permisos SET ? ', obj,(error, results, fields) =>{
+                configuracion.cargarPermisos();
                 callback(error, results, fields);
             });
         }
@@ -42,8 +44,8 @@ let controller = {
         }
 
         connection.query('DELETE from roles_permisos ' + where + ' ', (error, results, fields) => {
+            configuracion.cargarPermisos();
             callback(error, results, fields);
-
         });
     },
 
