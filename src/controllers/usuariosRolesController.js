@@ -22,7 +22,7 @@ let controller = {
 
     postUsuarioRol : (obj, callback) => {
         if (obj.id_rol && obj.id_usuario){
-            connection.query('INSERT INTO usuarios_roles SET ? ', aux,(error, results, fields) =>{
+            connection.query('INSERT INTO usuarios_roles SET ? ', obj,(error, results, fields) =>{
                 callback(error, results, fields);
             });
         }
