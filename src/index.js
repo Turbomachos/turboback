@@ -25,7 +25,7 @@ db.once('open', function() {
     console.log('connected!');
 });
 
-var swaggerDefinition = {
+let swaggerDefinition = {
     swagger:"2.0",
     info: {
         title: 'Node Swagger API',
@@ -37,14 +37,14 @@ var swaggerDefinition = {
     basePath: '/back/v1',
 };
 
-var options = {
+let options = {
     // import swaggerDefinitions
     swaggerDefinition: swaggerDefinition,
     // path to the API docs
     apis: ['dist/api/*.js'],
 };
 
-var swaggerSpec = swaggerJSDoc(options);
+let swaggerSpec = swaggerJSDoc(options);
 
 // logger
 app.use(morgan('dev'));
