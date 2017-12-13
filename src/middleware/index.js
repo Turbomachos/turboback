@@ -27,7 +27,6 @@ export default ({ config, db }) => {
                     });
 
                     if (continuar){
-
                         next();
                     }else{
                         res.status(403).send(configuracion.NO_AUTORIZADO);
