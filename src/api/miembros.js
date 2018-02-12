@@ -105,6 +105,7 @@ export default ({ config, db }) => {
      */
     api.post('/miembro', (req, res) => {
         var aux = {};
+        console.log(req.body);
         if (req.body.nombre)        aux.nombre = req.body.nombre;
         if (req.body.biografia)     aux.biografia = req.body.biografia;
         aux.fecha_union = moment().unix();
